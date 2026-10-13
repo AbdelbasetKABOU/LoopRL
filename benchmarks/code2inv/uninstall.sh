@@ -1,0 +1,1 @@
+rm -rf benchmarks/code2inv/bench

@@ -1,0 +1,15 @@
+(library
+  (name looprl)
+  (preprocess (pps
+    sedlex.ppx
+    ppx_jane ppx_let ppx_python
+    ppx_deriving.eq ppx_deriving.show ppx_deriving.enum))
+  (flags (:standard -w -39)) ;; menhir generates 'unused rec flag' errors
+  (inline_tests (flags -verbose))
+  (libraries util fmt base parsexp pyml pythonlib sedlex menhirLib re lens owl))
+
+(menhir
+ (modules parser)
+ (flags --explain)
+ ;; (infer false) ;; this is sometimes needed for menhir to work with functors
+)
